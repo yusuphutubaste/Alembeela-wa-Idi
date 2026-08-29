@@ -1,0 +1,18 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scrolling or interactive feedback for buttons
+    const playButtons = document.querySelectorAll('.btn-play');
+    
+    playButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const cardTitle = button.closest('.card').querySelector('h3').innerText;
+            console.log(`Umebofya kutazama: ${cardTitle}`);
+            
+            // You can replace this alert or action with a modal popup or video player redirect
+            alert(`Inapakia video ya: ${cardTitle}`);
+        });
+    });
+
+    // Simple mobile navigation toggle support (if extended later)
+    console.log('Alembeela wa Idi AI Portal loaded successfully.');
+});
