@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alembeela wa Idi | AI Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-logo-area">
+            <div class="ai-logo-badge">
+                <span class="ai-letters">AI</span>
+                <span class="ai-subtext">AI</span>
+            </div>
+            <div class="nav-brand-title">Alembeela wa Idi</div>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#">Mafunzo</a>
+            <a href="#">Kulimishana</a>
+            <a href="#" class="btn-nav-action">Tazama Video</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Hekima &amp; Utamaduni</h1>
+        <p class="hero-subtitle">Alembeela wa Idi</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="section-header">
+            <h2>Úmbo cha Babembe</h2>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="card-tag">Sehemu ya Kwanza</div>
+                    <h3>Úmbo cha Babembe (1)</h3>
+                    <p>Uchambuzi maalum na mafunzo ya kina kuhusu asili, historia na utamaduni.</p>
+                </div>
+                <a href="#" class="btn-play">
+                    <div class="play-icon">&#9658;</div>
+                    Tazama Video
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-tag">Sehemu ya Pili</div>
+                    <h3>Úmbo cha Babembe (2)</h3>
+                    <p>Mwendelezo wa mafunzo ya kipekee yanayotoa mwanga na maarifa thabiti.</p>
+                </div>
+                <a href="#" class="btn-play">
+                    <div class="play-icon">&#9658;</div>
+                    Tazama Video
+                </a>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Kulimishana &amp; Kuishi Vizuri</h2>
+        </div>
+
+        <div class="about-card">
+            <h3>Kuelimisha Jamii na Kujenga Maisha Bora</h3>
+            <p>Misingi mikuu ya kuelimishana, kukuza amani, upendo, na kuishi vizuri kupitia hekima na mafunzo thabiti ya kijamii.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Alembeela wa Idi. Haki zote zimehifadhiwa.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
