@@ -17,6 +17,10 @@
             --btn-red: #d90429;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -92,6 +96,7 @@
             display: flex;
             gap: 1.8rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -115,6 +120,9 @@
             padding: 0.55rem 1.3rem;
             border-radius: 50px;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-nav-action:hover {
@@ -253,6 +261,7 @@
             transition: all 0.2s ease;
             box-shadow: 0 4px 15px rgba(217, 4, 41, 0.3);
             width: 100%;
+            cursor: pointer;
         }
 
         .btn-play:hover {
@@ -311,8 +320,13 @@
         }
 
         @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
             .nav-links {
-                display: none;
+                justify-content: center;
             }
         }
     </style>
@@ -320,19 +334,19 @@
 <body>
 
     <!-- Navigation Bar -->
-    <nav>
+    <nav id="home">
         <div class="nav-logo-area">
-            <div class="ai-logo-badge">
+            <div class="ai-logo-badge" aria-label="Alembeela wa Idi logo">
                 <span class="ai-letters">AI</span>
                 <span class="ai-subtext">AI</span>
             </div>
             <div class="nav-brand-title">Alembeela wa Idi</div>
         </div>
         <div class="nav-links">
-            <a href="#" class="active">Home</a>
-            <a href="#">Mafunzo</a>
-            <a href="#">Kulimishana</a>
-            <a href="#" class="btn-nav-action">Tazama Video</a>
+            <a href="#home" class="active">Home</a>
+            <a href="#lessons">Mafunzo</a>
+            <a href="#about">Kulimishana</a>
+            <a href="#videos" class="btn-nav-action">Tazama Video</a>
         </div>
     </nav>
 
@@ -345,39 +359,39 @@
     <!-- Main Section Content -->
     <div class="container">
         
-        <div class="section-header">
+        <div class="section-header" id="lessons">
             <h2>Úmbo cha Babembe</h2>
         </div>
 
-        <div class="grid">
+        <div class="grid" id="videos">
             <!-- Video Part 1 -->
-            <div class="card">
+            <div class="card" id="video-1">
                 <div>
                     <div class="card-tag">Sehemu ya Kwanza</div>
                     <h3>Úmbo cha Babembe (1)</h3>
                     <p>Uchambuzi maalum na mafunzo ya kina kuhusu asili, historia na utamaduni.</p>
                 </div>
-                <a href="#" class="btn-play">
+                <a href="#video-1" class="btn-play" aria-label="Watch video part 1">
                     <div class="play-icon">&#9658;</div>
                     Tazama Video
                 </a>
             </div>
 
             <!-- Video Part 2 -->
-            <div class="card">
+            <div class="card" id="video-2">
                 <div>
                     <div class="card-tag">Sehemu ya Pili</div>
                     <h3>Úmbo cha Babembe (2)</h3>
                     <p>Mwendelezo wa mafunzo ya kipekee yanayotoa mwanga na maarifa thabiti.</p>
                 </div>
-                <a href="#" class="btn-play">
+                <a href="#video-2" class="btn-play" aria-label="Watch video part 2">
                     <div class="play-icon">&#9658;</div>
                     Tazama Video
                 </a>
             </div>
         </div>
 
-        <div class="section-header">
+        <div class="section-header" id="about">
             <h2>Kulimishana &amp; Kuishi Vizuri</h2>
         </div>
 
