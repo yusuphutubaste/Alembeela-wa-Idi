@@ -44,6 +44,11 @@
             max-width: 1150px;
             margin: 0 auto;
             padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            background-color: rgba(3, 7, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
         }
 
         .nav-logo-area {
@@ -65,6 +70,12 @@
             justify-content: center;
             box-shadow: 0 0 18px var(--accent-gold-glow);
             position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ai-logo-badge:hover {
+            transform: scale(1.05);
         }
 
         .ai-logo-badge .ai-letters {
@@ -107,6 +118,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: color 0.2s;
+            cursor: pointer;
         }
 
         .nav-links a:hover, .nav-links a.active {
@@ -143,14 +155,12 @@
             font-weight: 900;
             letter-spacing: -1px;
             margin-bottom: 0.5rem;
-            background: linear-gradient(180deg, #ffffff 30%, #b0bec5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--accent-gold);
         }
 
         .hero-subtitle {
             font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--accent-gold);
+            color: var(--text-muted);
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -262,6 +272,7 @@
             box-shadow: 0 4px 15px rgba(217, 4, 41, 0.3);
             width: 100%;
             cursor: pointer;
+            border: none;
         }
 
         .btn-play:hover {
@@ -319,6 +330,73 @@
             letter-spacing: 0.5px;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            height: auto;
+            max-height: 90vh;
+            background-color: var(--bg-card);
+            border-radius: 14px;
+            padding: 2rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+
+        .modal-title {
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+
+        .modal-description {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-placeholder {
+            background: rgba(243, 183, 48, 0.05);
+            border: 2px dashed var(--border-color);
+            border-radius: 10px;
+            padding: 3rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
@@ -328,6 +406,11 @@
             .nav-links {
                 justify-content: center;
             }
+
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -336,7 +419,7 @@
     <!-- Navigation Bar -->
     <nav id="home">
         <div class="nav-logo-area">
-            <div class="ai-logo-badge" aria-label="Alembeela wa Idi logo">
+            <div class="ai-logo-badge" onclick="document.location.href='#home'" aria-label="Alembeela wa Idi logo">
                 <span class="ai-letters">AI</span>
                 <span class="ai-subtext">AI</span>
             </div>
@@ -352,7 +435,7 @@
 
     <!-- Header Section -->
     <header>
-        <h1>Hekima &amp; Utamaduni</h1>
+        <h1>Hekima & Utamaduni</h1>
         <p class="hero-subtitle">Alembeela wa Idi</p>
     </header>
 
@@ -365,34 +448,34 @@
 
         <div class="grid" id="videos">
             <!-- Video Part 1 -->
-            <div class="card" id="video-1">
+            <div class="card">
                 <div>
                     <div class="card-tag">Sehemu ya Kwanza</div>
                     <h3>Úmbo cha Babembe (1)</h3>
                     <p>Uchambuzi maalum na mafunzo ya kina kuhusu asili, historia na utamaduni.</p>
                 </div>
-                <a href="#video-1" class="btn-play" aria-label="Watch video part 1">
+                <button class="btn-play" onclick="openModal('video1')" aria-label="Watch video part 1">
                     <div class="play-icon">&#9658;</div>
                     Tazama Video
-                </a>
+                </button>
             </div>
 
             <!-- Video Part 2 -->
-            <div class="card" id="video-2">
+            <div class="card">
                 <div>
                     <div class="card-tag">Sehemu ya Pili</div>
                     <h3>Úmbo cha Babembe (2)</h3>
                     <p>Mwendelezo wa mafunzo ya kipekee yanayotoa mwanga na maarifa thabiti.</p>
                 </div>
-                <a href="#video-2" class="btn-play" aria-label="Watch video part 2">
+                <button class="btn-play" onclick="openModal('video2')" aria-label="Watch video part 2">
                     <div class="play-icon">&#9658;</div>
                     Tazama Video
-                </a>
+                </button>
             </div>
         </div>
 
         <div class="section-header" id="about">
-            <h2>Kulimishana &amp; Kuishi Vizuri</h2>
+            <h2>Kulimishana & Kuishi Vizuri</h2>
         </div>
 
         <div class="about-card">
@@ -402,10 +485,71 @@
 
     </div>
 
+    <!-- Video Modals -->
+    <div id="video1" class="modal" onclick="if(event.target === this) closeModal('video1')">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('video1')">&times;</span>
+            <h2 class="modal-title">Úmbo cha Babembe (1)</h2>
+            <p class="modal-description">Sehemu ya Kwanza - Uchambuzi maalum na mafunzo ya kina kuhusu asili, historia na utamaduni.</p>
+            <div class="modal-placeholder">
+                <p>🎥 Video content will be displayed here</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Add your video URL or embed code to the HTML</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="video2" class="modal" onclick="if(event.target === this) closeModal('video2')">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('video2')">&times;</span>
+            <h2 class="modal-title">Úmbo cha Babembe (2)</h2>
+            <p class="modal-description">Sehemu ya Pili - Mwendelezo wa mafunzo ya kipekee yanayotoa mwanga na maarifa thabiti.</p>
+            <div class="modal-placeholder">
+                <p>🎥 Video content will be displayed here</p>
+                <p style="font-size: 0.9rem; margin-top: 1rem;">Add your video URL or embed code to the HTML</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer Section -->
     <footer>
         <p>&copy; 2026 Alembeela wa Idi. Haki zote zimehifadhiwa.</p>
     </footer>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Update active nav link based on scroll
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
