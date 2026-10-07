@@ -1,1207 +1,1231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alembeela wa Idi | Hekima na Utamaduni</title>
-    <meta name="description" content="Alembeela wa Idi ni tovuti ya kujielimisha inayotoa hekima, utamaduni, historia na maadili ya jamii ya Babembe.">
-    <style>
-        :root {
-            --bg-deep: #050b12;
-            --bg-medium: #0b1720;
-            --panel: rgba(18, 28, 37, 0.78);
-            --panel-strong: #131f2a;
-            --panel-soft: rgba(255, 255, 255, 0.03);
-            --gold: #f5c76b;
-            --gold-strong: #f0b449;
-            --gold-soft: rgba(245, 199, 107, 0.18);
-            --accent-red: #d93a4a;
-            --text: #f7f3eb;
-            --muted: #b3bfca;
-            --line: rgba(255, 255, 255, 0.08);
-            --shadow: 0 30px 70px rgba(0, 0, 0, 0.38);
-            --shadow-soft: 0 18px 40px rgba(19, 30, 42, 0.35);
-            --radius-xl: 28px;
-            --radius-lg: 20px;
-            --radius-md: 14px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background:
-                radial-gradient(circle at top, rgba(245, 199, 107, 0.10), transparent 22%),
-                radial-gradient(circle at right, rgba(217, 58, 74, 0.08), transparent 18%),
-                linear-gradient(180deg, var(--bg-deep) 0%, #07131b 35%, #090f14 100%);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 100%;
-        }
-
-        .container {
-            width: min(1180px, calc(100% - 2rem));
-            margin: 0 auto;
-        }
-
-        .section-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.72rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--gold);
-            background: rgba(245, 199, 107, 0.08);
-            border: 1px solid rgba(245, 199, 107, 0.14);
-            border-radius: 999px;
-            padding: 0.7rem 1rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            line-height: 1.1;
-            color: var(--text);
-            font-weight: 900;
-            letter-spacing: -0.04em;
-            margin-bottom: 0.8rem;
-        }
-
-        .section-header p {
-            font-size: 1.05rem;
-            color: var(--muted);
-            max-width: 760px;
-            margin: 0 auto;
-        }
-
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(5, 11, 18, 0.7);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border-bottom: 1px solid var(--line);
-        }
-
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            min-height: 88px;
-            gap: 1.5rem;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.9rem;
-        }
-
-        .brand-mark {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            border: 1.5px solid rgba(245, 199, 107, 0.9);
-            box-shadow: inset 0 0 0 1px rgba(245, 199, 107, 0.15), 0 0 25px rgba(245, 199, 107, 0.16);
-            background: radial-gradient(circle at 30% 30%, rgba(245, 199, 107, 0.18), rgba(5, 11, 18, 0.2));
-            color: var(--gold);
-            font-weight: 900;
-            letter-spacing: 0.02em;
-            cursor: pointer;
-            transition: transform 0.25s ease;
-        }
-
-        .brand-mark:hover {
-            transform: translateY(-2px) scale(1.04);
-        }
-
-        .brand-name {
-            font-size: 1.05rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-weight: 800;
-            color: var(--text);
-            white-space: nowrap;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1.8rem;
-        }
-
-        .nav-links a {
-            position: relative;
-            color: var(--muted);
-            font-size: 0.8rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            font-weight: 700;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -0.45rem;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--gold);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-strong) 100%);
-            color: #1a1206;
-            padding: 0.8rem 1.3rem;
-            border-radius: 999px;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            box-shadow: 0 18px 35px rgba(245, 199, 107, 0.18);
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 35px rgba(245, 199, 107, 0.25);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 0.5rem 0;
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2.5px;
-            border-radius: 10px;
-            background: var(--gold);
-        }
-
-        .hero {
-            padding: 5.5rem 0 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before,
-        .hero::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(20px);
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        .hero::before {
-            width: 420px;
-            height: 420px;
-            background: rgba(245, 199, 107, 0.13);
-            right: -80px;
-            top: -30px;
-        }
-
-        .hero::after {
-            width: 320px;
-            height: 320px;
-            background: rgba(217, 58, 74, 0.08);
-            left: -60px;
-            bottom: 10px;
-        }
-
-        .hero-wrap {
-            display: grid;
-            grid-template-columns: 1.25fr 0.75fr;
-            align-items: center;
-            gap: 2.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-copy {
-            max-width: 680px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: rgba(245, 199, 107, 0.08);
-            border: 1px solid rgba(245, 199, 107, 0.14);
-            border-radius: 999px;
-            padding: 0.6rem 0.9rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-size: 0.72rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.8rem, 5vw, 5rem);
-            line-height: 0.98;
-            font-weight: 900;
-            letter-spacing: -0.06em;
-            margin-bottom: 1.25rem;
-            color: var(--text);
-        }
-
-        .hero h1 .highlight {
-            color: var(--gold);
-        }
-
-        .hero p {
-            font-size: 1.07rem;
-            color: var(--muted);
-            max-width: 610px;
-            margin-bottom: 2rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .primary-btn,
-        .secondary-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            min-height: 54px;
-            padding: 0.9rem 1.5rem;
-            border-radius: 999px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            font-weight: 800;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            border: 1px solid transparent;
-            cursor: pointer;
-        }
-
-        .primary-btn {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-strong) 100%);
-            color: #120d05;
-            box-shadow: 0 20px 40px rgba(245, 199, 107, 0.2);
-        }
-
-        .secondary-btn {
-            background: rgba(255, 255, 255, 0.02);
-            color: var(--text);
-            border-color: rgba(255, 255, 255, 0.08);
-        }
-
-        .primary-btn:hover,
-        .secondary-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .hero-metrics {
-            margin-top: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .metric {
-            min-width: 150px;
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            padding: 1rem 1.1rem;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .metric strong {
-            display: block;
-            font-size: 1.7rem;
-            color: var(--gold);
-            line-height: 1;
-            margin-bottom: 0.25rem;
-        }
-
-        .metric span {
-            color: var(--muted);
-            font-size: 0.74rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .hero-panel {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-card {
-            width: min(100%, 430px);
-            background: linear-gradient(180deg, rgba(17, 24, 32, 0.95), rgba(11, 20, 28, 0.9));
-            border: 1px solid rgba(245, 199, 107, 0.18);
-            border-radius: 30px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-card::before {
-            content: "";
-            position: absolute;
-            inset: 12% auto auto -12%;
-            width: 180px;
-            height: 180px;
-            background: rgba(245, 199, 107, 0.14);
-            border-radius: 50%;
-            filter: blur(16px);
-        }
-
-        .mini-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .mini-title {
-            font-size: 0.78rem;
-            letter-spacing: 0.12em;
-            color: var(--gold);
-            text-transform: uppercase;
-            font-weight: 800;
-        }
-
-        .mini-badge {
-            border: 1px solid rgba(245, 199, 107, 0.18);
-            border-radius: 999px;
-            padding: 0.38rem 0.8rem;
-            color: var(--text);
-            font-size: 0.7rem;
-            background: rgba(245, 199, 107, 0.06);
-        }
-
-        .video-window {
-            position: relative;
-            padding: 1.1rem;
-            border-radius: 22px;
-            background: linear-gradient(135deg, rgba(243, 183, 48, 0.08), rgba(16, 26, 36, 0.7));
-            border: 1px solid rgba(245, 199, 107, 0.14);
-            min-height: 260px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-            z-index: 1;
-        }
-
-        .video-window::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.04), transparent 60%);
-        }
-
-        .play-circle {
-            position: relative;
-            z-index: 1;
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            border: 2px solid rgba(245, 199, 107, 0.88);
-            color: var(--gold);
-            background: rgba(245, 199, 107, 0.06);
-            box-shadow: 0 0 30px rgba(245, 199, 107, 0.12);
-            font-size: 2rem;
-        }
-
-        .feature-list {
-            margin-top: 1rem;
-            display: grid;
-            gap: 0.75rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .feature-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
-        .check {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: rgba(245, 199, 107, 0.12);
-            color: var(--gold);
-            font-weight: 900;
-            font-size: 0.82rem;
-        }
-
-        main {
-            padding-bottom: 4rem;
-        }
-
-        section {
-            padding: 4.5rem 0;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 2rem;
-        }
-
-        .video-card {
-            position: relative;
-            background: linear-gradient(180deg, rgba(19, 30, 42, 0.9), rgba(12, 20, 28, 0.82));
-            border: 1px solid rgba(245, 199, 107, 0.14);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .video-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(245, 199, 107, 0.28);
-            box-shadow: 0 26px 50px rgba(0, 0, 0, 0.22);
-        }
-
-        .video-thumb {
-            position: relative;
-            height: 220px;
-            display: grid;
-            place-items: center;
-            background:
-                linear-gradient(135deg, rgba(245, 199, 107, 0.12), rgba(217, 58, 74, 0.06)),
-                linear-gradient(135deg, #111d27, #0c151d);
-            border-bottom: 1px solid rgba(245, 199, 107, 0.1);
-            overflow: hidden;
-        }
-
-        .video-thumb::before {
-            content: "";
-            position: absolute;
-            inset: auto 10% 10% auto;
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background: rgba(245, 199, 107, 0.08);
-            filter: blur(18px);
-        }
-
-        .video-play {
-            position: relative;
-            width: 78px;
-            height: 78px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            background: rgba(5, 11, 18, 0.32);
-            border: 2px solid rgba(245, 199, 107, 0.85);
-            color: var(--gold);
-            font-size: 1.8rem;
-            box-shadow: 0 0 30px rgba(245, 199, 107, 0.14);
-        }
-
-        .video-body {
-            padding: 1.5rem 1.4rem 1.6rem;
-        }
-
-        .video-tag {
-            display: inline-block;
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--gold);
-            background: rgba(245, 199, 107, 0.08);
-            border: 1px solid rgba(245, 199, 107, 0.12);
-            padding: 0.45rem 0.7rem;
-            border-radius: 999px;
-            margin-bottom: 1rem;
-        }
-
-        .video-card h3 {
-            font-size: 1.45rem;
-            line-height: 1.3;
-            color: var(--text);
-            margin-bottom: 0.8rem;
-            letter-spacing: -0.03em;
-        }
-
-        .video-card p {
-            color: var(--muted);
-            font-size: 0.96rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .watch-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(245, 199, 107, 0.2);
-            background: rgba(245, 199, 107, 0.04);
-            color: var(--gold);
-            padding: 0.8rem 1.1rem;
-            border-radius: 999px;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-size: 0.72rem;
-            cursor: pointer;
-            transition: transform 0.25s ease, background 0.25s ease;
-        }
-
-        .watch-btn:hover {
-            background: rgba(245, 199, 107, 0.08);
-            transform: translateX(3px);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.5rem;
-        }
-
-        .feature-card {
-            background: linear-gradient(180deg, rgba(19, 30, 42, 0.82), rgba(13, 22, 30, 0.8));
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: transform 0.25s ease, border-color 0.25s ease;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(245, 199, 107, 0.26);
-        }
-
-        .feature-icon {
-            font-size: 2.6rem;
-            margin-bottom: 0.9rem;
-        }
-
-        .feature-card h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.7rem;
-            color: var(--text);
-        }
-
-        .feature-card p {
-            color: var(--muted);
-            font-size: 0.95rem;
-        }
-
-        .about-wrap {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .about-box {
-            background: linear-gradient(135deg, rgba(19, 31, 42, 0.92), rgba(10, 18, 25, 0.9));
-            border: 1px solid rgba(245, 199, 107, 0.14);
-            border-radius: var(--radius-xl);
-            padding: 2.2rem;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .about-box h3 {
-            color: var(--gold);
-            font-size: clamp(1.7rem, 3vw, 2.2rem);
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            letter-spacing: -0.05em;
-        }
-
-        .about-box p {
-            color: var(--muted);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .about-side {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .mini-panel {
-            padding: 1.4rem 1.25rem;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--line);
-            background: linear-gradient(180deg, rgba(19, 30, 42, 0.8), rgba(11, 20, 28, 0.82));
-        }
-
-        .mini-panel strong {
-            display: block;
-            color: var(--gold);
-            font-size: 1.4rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .mini-panel span {
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            background: rgba(3, 6, 10, 0.82);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-        }
-
-        .modal.active {
-            display: flex;
-            animation: modalFade 0.2s ease;
-        }
-
-        @keyframes modalFade {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            position: relative;
-            width: min(720px, 100%);
-            background: linear-gradient(180deg, rgba(17, 26, 35, 0.96), rgba(9, 19, 27, 0.96));
-            border: 1px solid rgba(245, 199, 107, 0.16);
-            border-radius: var(--radius-xl);
-            padding: 2rem 1.5rem 1.5rem;
-            box-shadow: var(--shadow);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid rgba(245, 199, 107, 0.18);
-            background: rgba(245, 199, 107, 0.06);
-            color: var(--gold);
-            font-size: 1.6rem;
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-        }
-
-        .modal h2 {
-            color: var(--gold);
-            font-size: clamp(1.7rem, 4vw, 2.4rem);
-            margin: 0.5rem 0 1rem;
-            letter-spacing: -0.04em;
-        }
-
-        .modal p {
-            color: var(--muted);
-            margin-bottom: 1.3rem;
-            font-size: 1rem;
-        }
-
-        .video-placeholder {
-            background: linear-gradient(135deg, rgba(245, 199, 107, 0.08), rgba(17, 27, 36, 0.7));
-            border: 1px dashed rgba(245, 199, 107, 0.2);
-            border-radius: 18px;
-            padding: 2.2rem 1.5rem;
-            text-align: center;
-            color: var(--muted);
-        }
-
-        .video-placeholder p:first-child {
-            color: var(--text);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        footer {
-            border-top: 1px solid var(--line);
-            background: rgba(5, 11, 18, 0.8);
-            padding: 2.5rem 0;
-        }
-
-        .footer-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-            text-align: center;
-        }
-
-        .footer-wrap p {
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--muted);
-            font-size: 0.8rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        @media (max-width: 980px) {
-            .hero-wrap,
-            .about-wrap,
-            .video-grid,
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-wrap {
-                gap: 2rem;
-            }
-
-            .hero-copy {
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 760px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background: rgba(11, 20, 28, 0.95);
-                border-bottom: 1px solid var(--line);
-                padding: 1.2rem 1rem 1.4rem;
-                gap: 1.1rem;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .navbar {
-                position: relative;
-            }
-
-            .brand-name {
-                font-size: 0.92rem;
-            }
-
-            .hero {
-                padding-top: 4rem;
-            }
-
-            .hero h1 {
-                font-size: 2.7rem;
-            }
-
-            .hero-card {
-                padding: 1rem;
-            }
-
-            .video-window {
-                min-height: 210px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050b12" />
+  <title>Alembeela wa Idi | Hekima na Utamaduni</title>
+  <meta
+    name="description"
+    content="Alembeela wa Idi ni tovuti ya kujielimisha inayotoa hekima, utamaduni, historia na maadili ya jamii ya Babembe."
+  />
+  <meta property="og:title" content="Alembeela wa Idi | Hekima na Utamaduni" />
+  <meta
+    property="og:description"
+    content="Jifunze historia, utamaduni na hekima ya jamii ya Babembe."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="" />
+  <style>
+    :root {
+      --bg-deep: #050b12;
+      --bg-medium: #0b1720;
+      --panel: rgba(18, 28, 37, 0.78);
+      --panel-strong: #131f2a;
+      --panel-soft: rgba(255, 255, 255, 0.03);
+      --gold: #f5c76b;
+      --gold-strong: #f0b449;
+      --gold-soft: rgba(245, 199, 107, 0.18);
+      --accent-red: #d93a4a;
+      --text: #f7f3eb;
+      --muted: #b3bfca;
+      --line: rgba(255, 255, 255, 0.08);
+      --shadow: 0 30px 70px rgba(0, 0, 0, 0.38);
+      --shadow-soft: 0 18px 40px rgba(19, 30, 42, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(245, 199, 107, 0.10), transparent 22%),
+        radial-gradient(circle at right, rgba(217, 58, 74, 0.08), transparent 18%),
+        linear-gradient(180deg, var(--bg-deep) 0%, #07131b 35%, #090f14 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    html, body {
+      scroll-padding-top: 90px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(245, 199, 107, 0.9);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -3rem;
+      background: var(--gold);
+      color: #1a1206;
+      padding: 0.8rem 1rem;
+      border-radius: 0.6rem;
+      font-weight: 800;
+      z-index: 9999;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(245, 199, 107, 0.08);
+      border: 1px solid rgba(245, 199, 107, 0.14);
+      border-radius: 999px;
+      padding: 0.7rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      color: var(--text);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-header p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5, 11, 18, 0.7);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 88px;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .brand-mark {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1.5px solid rgba(245, 199, 107, 0.9);
+      box-shadow: inset 0 0 0 1px rgba(245, 199, 107, 0.15), 0 0 25px rgba(245, 199, 107, 0.16);
+      background: radial-gradient(circle at 30% 30%, rgba(245, 199, 107, 0.18), rgba(5, 11, 18, 0.2));
+      color: var(--gold);
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+      border: none;
+    }
+
+    .brand-mark:hover {
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.45rem;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-strong) 100%);
+      color: #1a1206;
+      padding: 0.8rem 1.3rem;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 18px 35px rgba(245, 199, 107, 0.18);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 35px rgba(245, 199, 107, 0.25);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 0.5rem 0;
+      background: transparent;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2.5px;
+      border-radius: 10px;
+      background: var(--gold);
+      display: block;
+    }
+
+    .hero {
+      padding: 5.5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(20px);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 420px;
+      height: 420px;
+      background: rgba(245, 199, 107, 0.13);
+      right: -80px;
+      top: -30px;
+    }
+
+    .hero::after {
+      width: 320px;
+      height: 320px;
+      background: rgba(217, 58, 74, 0.08);
+      left: -60px;
+      bottom: 10px;
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      align-items: center;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(245, 199, 107, 0.08);
+      border: 1px solid rgba(245, 199, 107, 0.14);
+      border-radius: 999px;
+      padding: 0.6rem 0.9rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      line-height: 0.98;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    .hero h1 .highlight {
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 1.07rem;
+      color: var(--muted);
+      max-width: 610px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 54px;
+      padding: 0.9rem 1.5rem;
+      border-radius: 999px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-strong) 100%);
+      color: #120d05;
+      box-shadow: 0 20px 40px rgba(245, 199, 107, 0.2);
+    }
+
+    .secondary-btn {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .primary-btn:hover,
+    .secondary-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-metrics {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .metric {
+      min-width: 150px;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.1rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.7rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-panel {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-card {
+      width: min(100%, 430px);
+      background: linear-gradient(180deg, rgba(17, 24, 32, 0.95), rgba(11, 20, 28, 0.9));
+      border: 1px solid rgba(245, 199, 107, 0.18);
+      border-radius: 30px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 12% auto auto -12%;
+      width: 180px;
+      height: 180px;
+      background: rgba(245, 199, 107, 0.14);
+      border-radius: 50%;
+      filter: blur(16px);
+    }
+
+    .mini-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini-title {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .mini-badge {
+      border: 1px solid rgba(245, 199, 107, 0.18);
+      border-radius: 999px;
+      padding: 0.38rem 0.8rem;
+      color: var(--text);
+      font-size: 0.7rem;
+      background: rgba(245, 199, 107, 0.06);
+    }
+
+    .video-window {
+      position: relative;
+      padding: 1.1rem;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(243, 183, 48, 0.08), rgba(16, 26, 36, 0.7));
+      border: 1px solid rgba(245, 199, 107, 0.14);
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .video-window::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.04), transparent 60%);
+    }
+
+    .play-circle {
+      position: relative;
+      z-index: 1;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(245, 199, 107, 0.88);
+      color: var(--gold);
+      background: rgba(245, 199, 107, 0.06);
+      box-shadow: 0 0 30px rgba(245, 199, 107, 0.12);
+      font-size: 2rem;
+    }
+
+    .feature-list {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(245, 199, 107, 0.12);
+      color: var(--gold);
+      font-weight: 900;
+      font-size: 0.82rem;
+    }
+
+    main {
+      padding-bottom: 4rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    .video-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(19, 30, 42, 0.9), rgba(12, 20, 28, 0.82));
+      border: 1px solid rgba(245, 199, 107, 0.14);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(245, 199, 107, 0.28);
+      box-shadow: 0 26px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .video-thumb {
+      position: relative;
+      height: 220px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(135deg, rgba(245, 199, 107, 0.12), rgba(217, 58, 74, 0.06)),
+        linear-gradient(135deg, #111d27, #0c151d);
+      border-bottom: 1px solid rgba(245, 199, 107, 0.1);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .video-thumb::before {
+      content: "";
+      position: absolute;
+      inset: auto 10% 10% auto;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(245, 199, 107, 0.08);
+      filter: blur(18px);
+    }
+
+    .video-play {
+      position: relative;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(5, 11, 18, 0.32);
+      border: 2px solid rgba(245, 199, 107, 0.85);
+      color: var(--gold);
+      font-size: 1.8rem;
+      box-shadow: 0 0 30px rgba(245, 199, 107, 0.14);
+    }
+
+    .video-body {
+      padding: 1.5rem 1.4rem 1.6rem;
+    }
+
+    .video-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(245, 199, 107, 0.08);
+      border: 1px solid rgba(245, 199, 107, 0.12);
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .video-card h3 {
+      font-size: 1.45rem;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.03em;
+    }
+
+    .video-card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .watch-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(245, 199, 107, 0.2);
+      background: rgba(245, 199, 107, 0.04);
+      color: var(--gold);
+      padding: 0.8rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .watch-btn:hover {
+      background: rgba(245, 199, 107, 0.08);
+      transform: translateX(3px);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: linear-gradient(180deg, rgba(19, 30, 42, 0.82), rgba(13, 22, 30, 0.8));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(245, 199, 107, 0.26);
+    }
+
+    .feature-icon {
+      font-size: 2.6rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .feature-card h4 {
+      font-size: 1.25rem;
+      margin-bottom: 0.7rem;
+      color: var(--text);
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .about-box {
+      background: linear-gradient(135deg, rgba(19, 31, 42, 0.92), rgba(10, 18, 25, 0.9));
+      border: 1px solid rgba(245, 199, 107, 0.14);
+      border-radius: var(--radius-xl);
+      padding: 2.2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-box h3 {
+      color: var(--gold);
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.05em;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-side {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .mini-panel {
+      padding: 1.4rem 1.25rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(19, 30, 42, 0.8), rgba(11, 20, 28, 0.82));
+    }
+
+    .mini-panel strong {
+      display: block;
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .mini-panel span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(3, 6, 10, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal.active {
+      display: flex;
+      animation: modalFade 0.2s ease;
+    }
+
+    @keyframes modalFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      position: relative;
+      width: min(720px, 100%);
+      background: linear-gradient(180deg, rgba(17, 26, 35, 0.96), rgba(9, 19, 27, 0.96));
+      border: 1px solid rgba(245, 199, 107, 0.16);
+      border-radius: var(--radius-xl);
+      padding: 2rem 1.5rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 199, 107, 0.18);
+      background: rgba(245, 199, 107, 0.06);
+      color: var(--gold);
+      font-size: 1.6rem;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+    }
+
+    .modal h2 {
+      color: var(--gold);
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      margin: 0.5rem 0 1rem;
+      letter-spacing: -0.04em;
+    }
+
+    .modal p {
+      color: var(--muted);
+      margin-bottom: 1.3rem;
+      font-size: 1rem;
+    }
+
+    .video-placeholder {
+      background: linear-gradient(135deg, rgba(245, 199, 107, 0.08), rgba(17, 27, 36, 0.7));
+      border: 1px dashed rgba(245, 199, 107, 0.2);
+      border-radius: 18px;
+      padding: 2.2rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .video-placeholder p:first-child {
+      color: var(--text);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: rgba(5, 11, 18, 0.8);
+      padding: 2.5rem 0;
+    }
+
+    .footer-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .footer-wrap p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    @media (max-width: 980px) {
+      .hero-wrap,
+      .about-wrap,
+      .video-grid,
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-wrap { gap: 2rem; }
+      .hero-copy { max-width: 100%; }
+    }
+
+    @media (max-width: 760px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(11, 20, 28, 0.95);
+        border-bottom: 1px solid var(--line);
+        padding: 1.2rem 1rem 1.4rem;
+        gap: 1.1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .brand-name {
+        font-size: 0.92rem;
+      }
+
+      .hero {
+        padding-top: 4rem;
+      }
+
+      .hero h1 {
+        font-size: 2.7rem;
+      }
+
+      .hero-card {
+        padding: 1rem;
+      }
+
+      .video-window {
+        min-height: 210px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container navbar">
-            <div class="brand" aria-label="Alembeela wa Idi home">
-                <div class="brand-mark" onclick="scrollToSection('home')">AI</div>
-                <div class="brand-name">Alembeela wa Idi</div>
-            </div>
+  <a class="skip-link" href="#main-content">Ruka kwenda yaliyomo</a>
 
-            <nav class="nav-links" id="navMenu" aria-label="Main menu">
-                <a href="#home" class="active">Home</a>
-                <a href="#videos">Mafunzo</a>
-                <a href="#features">Sifa</a>
-                <a href="#about">Kuhusu</a>
-                <button class="nav-cta" type="button" onclick="scrollToSection('videos')">Tazama Video</button>
-            </nav>
+  <header class="site-header">
+    <div class="container navbar">
+      <div class="brand">
+        <button class="brand-mark" type="button" aria-label="Nenda kwenye ukurasa wa kwanza" data-scroll="home">AI</button>
+        <div class="brand-name">Alembeela wa Idi</div>
+      </div>
 
-            <div class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </header>
+      <nav class="nav-links" id="navMenu" aria-label="Main menu">
+        <a href="#home" class="active">Home</a>
+        <a href="#videos">Mafunzo</a>
+        <a href="#features">Sifa</a>
+        <a href="#about">Kuhusu</a>
+        <button class="nav-cta" type="button" data-scroll="videos">Tazama Video</button>
+      </nav>
 
-    <main>
-        <section class="hero" id="home">
-            <div class="container hero-wrap">
-                <div class="hero-copy">
-                    <div class="eyebrow">Alembeela wa Idi</div>
-                    <h1>Hekima <span class="highlight">&</span> Utamaduni</h1>
-                    <p>Elimu ya juu inayowekeza historia, asili, adabu na maadili ya jamii ya Babembe kwa mtazamo wa kisasa, wa kihistoria, na wa kiroho.</p>
-
-                    <div class="hero-actions">
-                        <button class="primary-btn" type="button" onclick="scrollToSection('videos')">▶ Tazama Video</button>
-                        <button class="secondary-btn" type="button" onclick="scrollToSection('about')">Jifunze Zaidi</button>
-                    </div>
-
-                    <div class="hero-metrics">
-                        <div class="metric">
-                            <strong>03</strong>
-                            <span>Sehemu</span>
-                        </div>
-                        <div class="metric">
-                            <strong>∞</strong>
-                            <span>Maarifa</span>
-                        </div>
-                        <div class="metric">
-                            <strong>1</strong>
-                            <span>Ujumla wa Hekima</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hero-panel">
-                    <div class="hero-card">
-                        <div class="mini-header">
-                            <div class="mini-title">Mafunzo ya hivi punde</div>
-                            <div class="mini-badge">Live</div>
-                        </div>
-
-                        <div class="video-window" onclick="openModal('video1')">
-                            <div class="play-circle">▶</div>
-                        </div>
-
-                        <div class="feature-list">
-                            <div class="feature-row"><span class="check">✓</span> Historia ya jamii ya Babembe</div>
-                            <div class="feature-row"><span class="check">✓</span> Utamaduni na mila za kijamii</div>
-                            <div class="feature-row"><span class="check">✓</span> Hekima ya maisha ya kila siku</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="videos">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-tag">Mafunzo</div>
-                    <h2>Úmbo cha Babembe</h2>
-                    <p>Kusoma historia, asili na utamaduni kwa njia ya kujielimisha na ya kuvutia.</p>
-                </div>
-
-                <div class="video-grid">
-                    <article class="video-card">
-                        <div class="video-thumb" onclick="openModal('video1')">
-                            <div class="video-play">▶</div>
-                        </div>
-                        <div class="video-body">
-                            <span class="video-tag">Sehemu ya Kwanza</span>
-                            <h3>Úmbo cha Babembe (1)</h3>
-                            <p>Kutambulisha historia, asili na ujuzi wa mwanzo wa jamii ya Babembe kwa mtazamo wa elimu na utamaduni.</p>
-                            <button class="watch-btn" type="button" onclick="openModal('video1')">Tazama</button>
-                        </div>
-                    </article>
-
-                    <article class="video-card">
-                        <div class="video-thumb" onclick="openModal('video2')">
-                            <div class="video-play">▶</div>
-                        </div>
-                        <div class="video-body">
-                            <span class="video-tag">Sehemu ya Pili</span>
-                            <h3>Úmbo cha Babembe (2)</h3>
-                            <p>Mwendelezo wa elimu ya jamii, maadili, utaratibu wa maisha, na umuhimu wa heshima katika utamaduni.</p>
-                            <button class="watch-btn" type="button" onclick="openModal('video2')">Tazama</button>
-                        </div>
-                    </article>
-
-                    <article class="video-card">
-                        <div class="video-thumb" onclick="openModal('video3')">
-                            <div class="video-play">▶</div>
-                        </div>
-                        <div class="video-body">
-                            <span class="video-tag">Sehemu ya Tatu</span>
-                            <h3>Úmbo cha Babembe (3)</h3>
-                            <p>Hitimisho lenye hekima kuhusu maisha ya kila siku, amani, upendo, uhusiano wa jamii na maendeleo ya binadamu.</p>
-                            <button class="watch-btn" type="button" onclick="openModal('video3')">Tazama</button>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="features">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-tag">Faida</div>
-                    <h2>Kwa Nini Uchimbe Alembeela?</h2>
-                    <p>Elimu yenye maana, yenye utakaso wa utamaduni, na yenye nguvu ya kuleta maendeleo ya kweli.</p>
-                </div>
-
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">📚</div>
-                        <h4>Elimu ya Kina</h4>
-                        <p>Mafunzo yanatoa fahamu ya historia, utamaduni na maadili ya jamii kwa mtazamo wa kisasa na wa kihistoria.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h4>Lengo Kamili</h4>
-                        <p>Kila somo linaelekeza kueleza ukweli, heshima na maisha ya kuboresha jamii kwa ujumla.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">💡</div>
-                        <h4>Hekima Yenye Thamani</h4>
-                        <p>Hekima ya kimila na ya kiutamaduni ni msingi wa akili, moyo na maendeleo ya watu.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">❤️</div>
-                        <h4>Upendo na Amani</h4>
-                        <p>Maadili ya amani, ushirikiano na heshima yamejengwa kwenye kila kifungu cha mafunzo.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🌍</div>
-                        <h4>Utamaduni wa Jamii</h4>
-                        <p>Kila mtazamo unafahamu mila, desturi, na mapokeo yanayobeba historia ya jamii.</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h4>Maendeleo ya Maisha</h4>
-                        <p>Kuzingatia hekima na utamaduni kunasaidia kujenga maisha yenye makusudi, tabia nzuri na mafanikio.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-tag">Kuhusu</div>
-                    <h2>Kulimishana & Kuishi Vizuri</h2>
-                </div>
-
-                <div class="about-wrap">
-                    <div class="about-box">
-                        <h3>Kuelimisha Jamii na Kujenga Maisha Bora</h3>
-                        <p>Alembeela wa Idi ni tovuti ya kujielimisha inayolenga kueneza hekima, utamaduni, na uelewa wa asili ya jamii ya Babembe. Hapa, wanafunzi, wazazi, na jamii kwa ujumla wanaweza kujifunza kuhusu historia, mila, na maadili yanayowatambulisha watu wa Babembe katika maisha ya kila siku.</p>
-                        <p>Lengo la tovuti ni kuimarisha maarifa ya kijamii, kukuza amani, kuchochea upendo wa utamaduni na kuwasaidia watu kutumia hekima katika masuala ya maisha, familia, na jamii. Elimu yenye maana ndiyo msingi wa kukua kwa kila mtu.</p>
-                    </div>
-
-                    <div class="about-side">
-                        <div class="mini-panel">
-                            <strong>03</strong>
-                            <span>Sehemu za mafunzo zenye mafundisho ya kina</span>
-                        </div>
-                        <div class="mini-panel">
-                            <strong>100%</strong>
-                            <span>Uwekezaji kwenye elimu, utamaduni na hekima</span>
-                        </div>
-                        <div class="mini-panel">
-                            <strong>1</strong>
-                            <span>Ujumla wa dhamira: kujenga jamii yenye fahamu na amani</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <div id="video1" class="modal" onclick="if(event.target === this) closeModal('video1')">
-        <div class="modal-content">
-            <button class="close-btn" type="button" onclick="closeModal('video1')">&times;</button>
-            <h2>Úmbo cha Babembe (1)</h2>
-            <p><strong>Sehemu ya Kwanza</strong></p>
-            <p>Hapa tunaanza safari ya kujifunza asili ya Babembe, historia ya jamii, na maana ya utamaduni uliowekwa kwenye mila na desturi za kizazi hadi kizazi.</p>
-            <div class="video-placeholder">
-                <p>🎬 Video Sehemu ya Kwanza</p>
-                <p>Ingiza link ya YouTube au video mpya katika HTML ili kuonyesha maudhui halisi.</p>
-            </div>
-        </div>
+      <button
+        class="hamburger"
+        id="hamburger"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navMenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
+  </header>
 
-    <div id="video2" class="modal" onclick="if(event.target === this) closeModal('video2')">
-        <div class="modal-content">
-            <button class="close-btn" type="button" onclick="closeModal('video2')">&times;</button>
-            <h2>Úmbo cha Babembe (2)</h2>
-            <p><strong>Sehemu ya Pili</strong></p>
-            <p>Sehemu hii inafungua zaidi ufahamu wa maadili, utaratibu wa kijamii, na umuhimu wa heshima, uongozi wa kijamii, na uhusiano wa watu wa Babembe.</p>
-            <div class="video-placeholder">
-                <p>🎬 Video Sehemu ya Pili</p>
-                <p>Ingiza link ya YouTube au video mpya katika HTML ili kuonyesha maudhui halisi.</p>
+  <main id="main-content">
+    <section class="hero" id="home">
+      <div class="container hero-wrap">
+        <div class="hero-copy">
+          <div class="eyebrow">Alembeela wa Idi</div>
+          <h1>Hekima <span class="highlight">&</span> Utamaduni</h1>
+          <p>Elimu ya juu inayowekeza historia, asili, adabu na maadili ya jamii ya Babembe kwa mtazamo wa kisasa, wa kihistoria, na wa kiroho.</p>
+
+          <div class="hero-actions">
+            <button class="primary-btn" type="button" data-scroll="videos">▶ Tazama Video</button>
+            <button class="secondary-btn" type="button" data-scroll="about">Jifunze Zaidi</button>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric">
+              <strong>03</strong>
+              <span>Sehemu</span>
             </div>
+            <div class="metric">
+              <strong>∞</strong>
+              <span>Maarifa</span>
+            </div>
+            <div class="metric">
+              <strong>1</strong>
+              <span>Ujumla wa Hekima</span>
+            </div>
+          </div>
         </div>
+
+        <div class="hero-panel">
+          <div class="hero-card">
+            <div class="mini-header">
+              <div class="mini-title">Mafunzo ya hivi punde</div>
+              <div class="mini-badge">Live</div>
+            </div>
+
+            <div class="video-window" data-open-video="video1" aria-label="Open video 1" role="button" tabindex="0">
+              <div class="play-circle">▶</div>
+            </div>
+
+            <div class="feature-list">
+              <div class="feature-row"><span class="check">✓</span> Historia ya jamii ya Babembe</div>
+              <div class="feature-row"><span class="check">✓</span> Utamaduni na mila za kijamii</div>
+              <div class="feature-row"><span class="check">✓</span> Hekima ya maisha ya kila siku</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="videos">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Mafunzo</div>
+          <h2>Úmbo cha Babembe</h2>
+          <p>Kusoma historia, asili na utamaduni kwa njia ya kujielimisha na ya kuvutia.</p>
+        </div>
+
+        <div class="video-grid">
+          <article class="video-card">
+            <div class="video-thumb" data-open-video="video1" aria-label="Open video 1" role="button" tabindex="0">
+              <div class="video-play">▶</div>
+            </div>
+            <div class="video-body">
+              <span class="video-tag">Sehemu ya Kwanza</span>
+              <h3>Úmbo cha Babembe (1)</h3>
+              <p>Kutambulisha historia, asili na ujuzi wa mwanzo wa jamii ya Babembe kwa mtazamo wa elimu na utamaduni.</p>
+              <button class="watch-btn" type="button" data-open-video="video1">Tazama</button>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <div class="video-thumb" data-open-video="video2" aria-label="Open video 2" role="button" tabindex="0">
+              <div class="video-play">▶</div>
+            </div>
+            <div class="video-body">
+              <span class="video-tag">Sehemu ya Pili</span>
+              <h3>Úmbo cha Babembe (2)</h3>
+              <p>Mwendelezo wa elimu ya jamii, maadili, utaratibu wa maisha, na umuhimu wa heshima katika utamaduni.</p>
+              <button class="watch-btn" type="button" data-open-video="video2">Tazama</button>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <div class="video-thumb" data-open-video="video3" aria-label="Open video 3" role="button" tabindex="0">
+              <div class="video-play">▶</div>
+            </div>
+            <div class="video-body">
+              <span class="video-tag">Sehemu ya Tatu</span>
+              <h3>Úmbo cha Babembe (3)</h3>
+              <p>Uchunguzi wa maadili ya jamii, mila zinazohifadhi utambulisho, na hekima ya kutumia historia kwa maisha ya leo.</p>
+              <button class="watch-btn" type="button" data-open-video="video3">Tazama</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Sifa</div>
+          <h2>Ulineo wa kukufundisha</h2>
+          <p>Maudhui yenye maana yanayoonyesha historia, adabu, na akili ya jamii ya Babembe kwa njia ya kifasihi na ya kisasa.</p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">📜</div>
+            <h4>Historia ya jamii</h4>
+            <p>Kutafakari asili, mizizi na mfululizo wa maisha ya Babembe kwa mtazamo wa elimu na utambuzi.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🧭</div>
+            <h4>Maadili na heshima</h4>
+            <p>Uchunguzi wa maadili, utaratibu wa jamii na thamani zinazotunza usawa, heshima na kujenga jamii yenye nguvu.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h4>Utamaduni wa leo</h4>
+            <p>Kuunganisha urithi wa zamani na maisha ya kisasa kwa kutumia lugha, mila na nadra za kijamii.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="about-wrap">
+          <div class="about-box">
+            <div class="section-tag">Kuhusu</div>
+            <h3>Hekima ya kila siku, iliyofungamana na utamaduni.</h3>
+            <p>Alembeela wa Idi ni jukwaa la kujielimisha linalolenga kuonyesha historia, adabu, mila na maadili ya jamii ya Babembe kwa mtazamo wa kisasa.</p>
+            <p>Kwa kupitia mafundisho na maelezo ya kina, lengo ni kujenga uelewa wa utambulisho wa jamii, heshima ya asili, na kuimarisha hekima kwa kizazi chote.</p>
+          </div>
+
+          <div class="about-side">
+            <div class="mini-panel">
+              <strong>03</strong>
+              <span>Mafunzo ya msingi</span>
+            </div>
+            <div class="mini-panel">
+              <strong>∞</strong>
+              <span>Ujifunzaji wa maisha</span>
+            </div>
+            <div class="mini-panel">
+              <strong>1</strong>
+              <span>Ujuzi unaozunguka jamii</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <p>© 2025 Alembeela wa Idi</p>
+
+      <div class="footer-links" aria-label="Footer links">
+        <a href="#home">Home</a>
+        <a href="#videos">Mafunzo</a>
+        <a href="#features">Sifa</a>
+        <a href="#about">Kuhusu</a>
+      </div>
     </div>
+  </footer>
 
-    <div id="video3" class="modal" onclick="if(event.target === this) closeModal('video3')">
-        <div class="modal-content">
-            <button class="close-btn" type="button" onclick="closeModal('video3')">&times;</button>
-            <h2>Úmbo cha Babembe (3)</h2>
-            <p><strong>Sehemu ya Tatu</strong></p>
-            <p>Sehemu ya mwisho inazitaka watu kufikiri kwa makini kuhusu maisha ya kila siku, amani, upendo, na kutumia hekima katika utendaji wa maisha ya ndani na ya jamii.</p>
-            <div class="video-placeholder">
-                <p>🎬 Video Sehemu ya Tatu</p>
-                <p>Ingiza link ya YouTube au video mpya katika HTML ili kuonyesha maudhui halisi.</p>
-            </div>
-        </div>
+  <div class="modal" id="videoModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="videoTitle">
+      <button class="close-btn" type="button" aria-label="Close video modal">×</button>
+      <div class="video-placeholder">
+        <p id="videoTitle">Video ya Alembeela wa Idi</p>
+        <p>Hii ni sehemu ya video inayoonyeshwa hapa. Ongeza link la YouTube au video halisi hapa.</p>
+      </div>
     </div>
+  </div>
 
-    <footer>
-        <div class="container footer-wrap">
-            <p>&copy; 2026 Alembeela wa Idi. Haki zote zimehifadhiwa.</p>
-            <div class="footer-links">
-                <a href="#home">Nyumbani</a>
-                <a href="#videos">Mafunzo</a>
-                <a href="#about">Kuhusu</a>
-                <a href="#">Wasiliana</a>
-            </div>
-        </div>
-    </footer>
+  <script>
+    const navMenu = document.getElementById('navMenu');
+    const hamburger = document.getElementById('hamburger');
+    const modal = document.getElementById('videoModal');
+    const closeBtn = document.querySelector('.close-btn');
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('navMenu').classList.toggle('active');
+    function toggleMenu() {
+      const isOpen = navMenu.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+      hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+
+    document.querySelectorAll('[data-scroll]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const target = document.getElementById(button.dataset.scroll);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+        navMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open menu');
+      });
+    });
 
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open menu');
+      });
+    });
+
+    function openModal(videoId) {
+      const title = document.getElementById('videoTitle');
+      const labels = {
+        video1: 'Úmbo cha Babembe (1)',
+        video2: 'Úmbo cha Babembe (2)',
+        video3: 'Úmbo cha Babembe (3)'
+      };
+
+      title.textContent = labels[videoId] || 'Video ya Alembeela wa Idi';
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-open-video]').forEach((element) => {
+      element.addEventListener('click', () => openModal(element.dataset.openVideo));
+      element.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openModal(element.dataset.openVideo);
         }
+      });
+    });
 
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
+    closeBtn.addEventListener('click', closeModal);
 
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
 
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                document.querySelectorAll('.modal.active').forEach(modal => modal.classList.remove('active'));
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navMenu').classList.remove('active');
-            });
-        });
-
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const sections = document.querySelectorAll('section[id]');
-
-        function setActiveLink() {
-            let currentId = 'home';
-            sections.forEach(section => {
-                const top = section.offsetTop - 120;
-                if (window.scrollY >= top) {
-                    currentId = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                const href = link.getAttribute('href');
-                link.classList.toggle('active', href === `#${currentId}`);
-            });
-        }
-
-        window.addEventListener('scroll', setActiveLink);
-    </script>
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
