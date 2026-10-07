@@ -663,6 +663,94 @@
       transform: translateX(3px);
     }
 
+    /* Shorts/Reels Section Styles */
+    .shorts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .short-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(19, 30, 42, 0.9), rgba(12, 20, 28, 0.82));
+      border: 1px solid rgba(245, 199, 107, 0.14);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .short-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(245, 199, 107, 0.28);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+    }
+
+    .short-embed-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(245, 199, 107, 0.1);
+      flex-shrink: 0;
+    }
+
+    .short-embed-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .short-info {
+      padding: 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .short-info h3 {
+      font-size: 1.1rem;
+      line-height: 1.3;
+      color: var(--text);
+      margin: 0 0 0.6rem 0;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+
+    .short-info p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .short-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(245, 199, 107, 0.2);
+      background: rgba(245, 199, 107, 0.04);
+      color: var(--gold);
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease;
+      margin-top: 1rem;
+      text-decoration: none;
+    }
+
+    .short-link:hover {
+      background: rgba(245, 199, 107, 0.08);
+      transform: translateX(3px);
+    }
+
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -873,12 +961,17 @@
       .hero-wrap,
       .about-wrap,
       .video-grid,
-      .features-grid {
+      .features-grid,
+      .shorts-grid {
         grid-template-columns: 1fr;
       }
 
       .hero-wrap { gap: 2rem; }
       .hero-copy { max-width: 100%; }
+
+      .shorts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 760px) {
@@ -922,6 +1015,14 @@
       .video-window {
         min-height: 210px;
       }
+
+      .shorts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .short-embed-wrapper {
+        aspect-ratio: 9 / 16;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -949,9 +1050,10 @@
       <nav class="nav-links" id="navMenu" aria-label="Main menu">
         <a href="#home" class="active">Home</a>
         <a href="#videos">Mafunzo</a>
+        <a href="#shorts">Reels</a>
         <a href="#features">Sifa</a>
         <a href="#about">Kuhusu</a>
-        <button class="nav-cta" type="button" data-video-url="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1">Tazama Video</button>
+        <a class="nav-cta" href="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1" target="_blank" rel="noopener noreferrer">Tazama Video</a>
       </nav>
 
       <button
@@ -978,8 +1080,8 @@
           <p>Elimu ya juu inayowekeza historia, asili, adabu na maadili ya jamii ya Babembe kwa mtazamo wa kisasa, wa kihistoria, na wa kiroho.</p>
 
           <div class="hero-actions">
-            <button class="primary-btn" type="button" data-video-url="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1">▶ Tazama Video</button>
-            <button class="secondary-btn" type="button" data-scroll="about">Jifunze Zaidi</button>
+            <a class="primary-btn" href="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1" target="_blank" rel="noopener noreferrer">▶ Tazama Video</a>
+            <a class="secondary-btn" href="#about">Jifunze Zaidi</a>
           </div>
 
           <div class="hero-metrics">
@@ -1001,66 +1103,91 @@
         <div class="hero-panel">
           <div class="hero-card">
             <div class="mini-header">
-              <div class="mini-title">Mafunzo ya hivi punde</div>
-              <div class="mini-badge">Live</div>
+              <div class="mini-title">Mwaliko wa Utamaduni</div>
+              <div class="mini-badge">Hivi Karibuni</div>
             </div>
 
-            <div class="video-window" data-video-url="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1" aria-label="Open video" role="button" tabindex="0">
+            <div class="video-window">
               <div class="play-circle">▶</div>
             </div>
 
             <div class="feature-list">
-              <div class="feature-row"><span class="check">✓</span> Historia ya jamii ya Babembe</div>
-              <div class="feature-row"><span class="check">✓</span> Utamaduni na mila za kijamii</div>
-              <div class="feature-row"><span class="check">✓</span> Hekima ya maisha ya kila siku</div>
+              <div class="feature-row">
+                <div class="check">✓</div>
+                <span>Sehemu za Kielimu</span>
+              </div>
+              <div class="feature-row">
+                <div class="check">✓</div>
+                <span>Historia ya Babembe</span>
+              </div>
+              <div class="feature-row">
+                <div class="check">✓</div>
+                <span>Maadili ya Jamii</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="videos">
+    <!-- Reels/Shorts Section -->
+    <section id="shorts">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">Mafunzo</div>
-          <h2>Úmbo cha Babembe</h2>
-          <p>Kusoma historia, asili na utamaduni kwa njia ya kujielimisha na ya kuvutia.</p>
+          <div class="section-tag">📱 Mfupi Lakini Mughimu</div>
+          <h2>Tazama Reels</h2>
+          <p>Vidimezi vya kushangilia utamaduni wa Babembe kwa njia inayofanya kazi kwa simu</p>
         </div>
 
-        <div class="video-grid">
-          <article class="video-card">
-            <div class="video-thumb" data-video-url="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1" aria-label="Open video" role="button" tabindex="0">
-              <div class="video-play">▶</div>
+        <div class="shorts-grid">
+          <!-- Short 1 -->
+          <article class="short-card">
+            <div class="short-embed-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/HhJm-izUZk4?si=TEWgZAzsld08cc84"
+                title="YouTube short 1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
             </div>
-            <div class="video-body">
-              <span class="video-tag">Sehemu ya Kwanza</span>
-              <h3>Úmbo cha Babembe (1)</h3>
-              <p>Kutambulisha historia, asili na ujuzi wa mwanzo wa jamii ya Babembe kwa mtazamo wa elimu na utamaduni.</p>
-              <button class="watch-btn" type="button" data-video-url="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1">Tazama</button>
-            </div>
-          </article>
-
-          <article class="video-card">
-            <div class="video-thumb" data-video-url="https://youtu.be/YPPOyvxJ-Wk?si=q3umUi0I9hEolME1" aria-label="Open video" role="button" tabindex="0">
-              <div class="video-play">▶</div>
-            </div>
-            <div class="video-body">
-              <span class="video-tag">Sehemu ya Pili</span>
-              <h3>Úmbo cha Babembe (2)</h3>
-              <p>Mwendelezo wa elimu ya jamii, maadili, utaratibu wa maisha, na umuhimu wa heshima katika utamaduni.</p>
-              <button class="watch-btn" type="button" data-video-url="https://youtu.be/YPPOyvxJ-Wk?si=q3umUi0I9hEolME1">Tazama</button>
+            <div class="short-info">
+              <h3>Hekima ya Babembe</h3>
+              <p>Jifunze ukweli wa kina kuhusu maadili na hekima ya jamii yetu.</p>
+              <a href="https://youtube.com/shorts/HhJm-izUZk4?si=TEWgZAzsld08cc84" target="_blank" rel="noopener noreferrer" class="short-link">Tazama Kamili</a>
             </div>
           </article>
 
-          <article class="video-card">
-            <div class="video-thumb" data-video-url="https://www.youtube.com/@Alembeelawaidi" aria-label="Open channel" role="button" tabindex="0">
-              <div class="video-play">▶</div>
+          <!-- Short 2 -->
+          <article class="short-card">
+            <div class="short-embed-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/jCPtT8ZPsoE?si=HiOvzVQ7xYwUMN3_"
+                title="YouTube short 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
             </div>
-            <div class="video-body">
-              <span class="video-tag">Sehemu ya Tatu</span>
-              <h3>Úmbo cha Babembe (3)</h3>
-              <p>Uchunguzi wa maadili ya jamii, mila zinazohifadhi utambulisho, na hekima ya kutumia historia kwa maisha ya leo.</p>
-              <button class="watch-btn" type="button" data-video-url="https://www.youtube.com/@Alembeelawaidi">Tazama</button>
+            <div class="short-info">
+              <h3>Utamaduni Uliokomea</h3>
+              <p>Jua jinsi utamaduni wa Babembe unavyoripoti historia yetu nzuri.</p>
+              <a href="https://youtube.com/shorts/jCPtT8ZPsoE?si=HiOvzVQ7xYwUMN3_" target="_blank" rel="noopener noreferrer" class="short-link">Tazama Kamili</a>
+            </div>
+          </article>
+
+          <!-- Short 3 -->
+          <article class="short-card">
+            <div class="short-embed-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/VklA0Aw2TLc?si=GM2Ga6sfaDy7OVW-"
+                title="YouTube short 3"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="short-info">
+              <h3>Tamaduni Yenye Nguvu</h3>
+              <p>Chunguza nguvu za kina za mitazamo ya kipindi na historia.</p>
+              <a href="https://youtube.com/shorts/VklA0Aw2TLc?si=GM2Ga6sfaDy7OVW-" target="_blank" rel="noopener noreferrer" class="short-link">Tazama Kamili</a>
             </div>
           </article>
         </div>
@@ -1070,29 +1197,29 @@
     <section id="features">
       <div class="container">
         <div class="section-header">
-          <div class="section-tag">Sifa</div>
-          <h2>Ulineo wa kukufundisha</h2>
-          <p>Maudhui yenye maana yanayoonyesha historia, adabu, na akili ya jamii ya Babembe kwa njia ya kifasihi na ya kisasa.</p>
+          <div class="section-tag">✨ Nini Kinachofanya Tunatatanisha</div>
+          <h2>Sifa za Ajabu</h2>
+          <p>Kila kitu ulichokihitaji kujifunza kuhusu utamaduni na historia ya Babembe</p>
         </div>
 
         <div class="features-grid">
-          <article class="feature-card">
-            <div class="feature-icon">📜</div>
-            <h4>Historia ya jamii</h4>
-            <p>Kutafakari asili, mizizi na mfululizo wa maisha ya Babembe kwa mtazamo wa elimu na utambuzi.</p>
-          </article>
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h4>Elimu ya Kina</h4>
+            <p>Somo la malalim kuhusu maadili, historia, na utamaduni wa jamii yetu.</p>
+          </div>
 
-          <article class="feature-card">
-            <div class="feature-icon">🧭</div>
-            <h4>Maadili na heshima</h4>
-            <p>Uchunguzi wa maadili, utaratibu wa jamii na thamani zinazotunza usawa, heshima na kujenga jamii yenye nguvu.</p>
-          </article>
+          <div class="feature-card">
+            <div class="feature-icon">🎬</div>
+            <h4>Vidimezi Vizuri</h4>
+            <p>Maudhui ya video yanayosambazwa kwa njia inayokamatia na yenye maana.</p>
+          </div>
 
-          <article class="feature-card">
+          <div class="feature-card">
             <div class="feature-icon">🌍</div>
-            <h4>Utamaduni wa leo</h4>
-            <p>Kuunganisha urithi wa zamani na maisha ya kisasa kwa kutumia lugha, mila na nadra za kijamii.</p>
-          </article>
+            <h4>Mtazamo wa Ulimwengu</h4>
+            <p>Hadithi zetu zilizoundwa na historia nzuri na maadili ya kila wakati.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1101,24 +1228,24 @@
       <div class="container">
         <div class="about-wrap">
           <div class="about-box">
-            <div class="section-tag">Kuhusu</div>
-            <h3>Hekima ya kila siku, iliyofungamana na utamaduni.</h3>
-            <p>Alembeela wa Idi ni jukwaa la kujielimisha linalolenga kuonyesha historia, adabu, mila na maadili ya jamii ya Babembe kwa mtazamo wa kisasa.</p>
-            <p>Kwa kupitia mafundisho na maelezo ya kina, lengo ni kujenga uelewa wa utambulisho wa jamii, heshima ya asili, na kuimarisha hekima kwa kizazi chote.</p>
+            <h3>Kuhusu Alembeela wa Idi</h3>
+            <p>Alembeela wa Idi ni dhamira ya kujenga hifadhi ya kila kitu kuhusu utamaduni, historia, na maadili ya jamii ya Babembe.</p>
+            <p>Tunatumaini kukamatia mahusiano yanayunganisha kila hadithi, mwaliko, na mswada wa mwanasimu wa kipindi chote.</p>
+            <p>Kwa njia ya Video, mafunzo, na hadithi, tunatumaini kueneza ufahamu wa kile tunachozaliwa.</p>
           </div>
 
           <div class="about-side">
             <div class="mini-panel">
-              <strong>03</strong>
-              <span>Mafunzo ya msingi</span>
+              <strong>50+</strong>
+              <span>Hadithi za Utamaduni</span>
             </div>
             <div class="mini-panel">
               <strong>∞</strong>
-              <span>Ujifunzaji wa maisha</span>
+              <span>Maarifa ya Kila Ukweli</span>
             </div>
             <div class="mini-panel">
               <strong>1</strong>
-              <span>Ujuzi unaozunguka jamii</span>
+              <span>Ujumla wa Familia</span>
             </div>
           </div>
         </div>
@@ -1127,105 +1254,69 @@
   </main>
 
   <footer>
-    <div class="container footer-wrap">
-      <p>© 2025 Alembeela wa Idi</p>
-
-      <div class="footer-links" aria-label="Footer links">
-        <a href="#home">Home</a>
-        <a href="#videos">Mafunzo</a>
-        <a href="#features">Sifa</a>
-        <a href="#about">Kuhusu</a>
+    <div class="container">
+      <div class="footer-wrap">
+        <p>&copy; 2024 Alembeela wa Idi. Haki zote zimehifadhiwa.</p>
+        <div class="footer-links">
+          <a href="#home">Nyumbani</a>
+          <a href="#shorts">Reels</a>
+          <a href="#features">Sifa</a>
+          <a href="#about">Kuhusu</a>
+        </div>
       </div>
     </div>
   </footer>
 
-  <div class="modal" id="videoModal" aria-hidden="true">
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="videoTitle">
-      <button class="close-btn" type="button" aria-label="Close video modal">×</button>
-      <div class="video-placeholder">
-        <p id="videoTitle">Video ya Alembeela wa Idi</p>
-        <p>Tembeleza chaneli yako ya YouTube kwa video mpya za hivi punde.</p>
-      </div>
-    </div>
-  </div>
-
   <script>
-    const navMenu = document.getElementById('navMenu');
+    // Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
-    const modal = document.getElementById('videoModal');
-    const closeBtn = document.querySelector('.close-btn');
+    const navMenu = document.getElementById('navMenu');
 
-    function openVideo(url) {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    }
-
-    function toggleMenu() {
-      const isOpen = navMenu.classList.toggle('active');
-      hamburger.setAttribute('aria-expanded', String(isOpen));
-      hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-    }
-
-    hamburger.addEventListener('click', toggleMenu);
-
-    document.querySelectorAll('[data-scroll]').forEach((button) => {
-      button.addEventListener('click', () => {
-        const target = document.getElementById(button.dataset.scroll);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        navMenu.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', 'Open menu');
-      });
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', navMenu.classList.contains('active'));
     });
 
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    // Close menu when link is clicked
+    navMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
         hamburger.setAttribute('aria-expanded', 'false');
-        hamburger.setAttribute('aria-label', 'Open menu');
       });
     });
 
-    document.querySelectorAll('[data-video-url]').forEach((element) => {
-      element.addEventListener('click', () => {
-        openVideo(element.dataset.videoUrl);
-      });
-
-      element.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          openVideo(element.dataset.videoUrl);
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({
+            behavior: 'smooth'
+          });
         }
       });
     });
 
-    function openModal() {
-      const title = document.getElementById('videoTitle');
-      title.textContent = 'Alembeela wa Idi';
-      modal.classList.add('active');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
+    // Update active nav link on scroll
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-links a');
 
-    function closeModal() {
-      modal.classList.remove('active');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
 
-    closeBtn.addEventListener('click', closeModal);
-
-    modal.addEventListener('click', (event) => {
-      if (event.target === modal) {
-        closeModal();
-      }
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
-      }
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
     });
   </script>
 </body>
