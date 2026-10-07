@@ -951,7 +951,7 @@
         <a href="#videos">Mafunzo</a>
         <a href="#features">Sifa</a>
         <a href="#about">Kuhusu</a>
-        <button class="nav-cta" type="button" data-channel-link> Tazama Video </button>
+        <button class="nav-cta" type="button" data-video-url="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1">Tazama Video</button>
       </nav>
 
       <button
@@ -978,7 +978,7 @@
           <p>Elimu ya juu inayowekeza historia, asili, adabu na maadili ya jamii ya Babembe kwa mtazamo wa kisasa, wa kihistoria, na wa kiroho.</p>
 
           <div class="hero-actions">
-            <button class="primary-btn" type="button" data-channel-link>▶ Tazama Video</button>
+            <button class="primary-btn" type="button" data-video-url="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1">▶ Tazama Video</button>
             <button class="secondary-btn" type="button" data-scroll="about">Jifunze Zaidi</button>
           </div>
 
@@ -1005,7 +1005,7 @@
               <div class="mini-badge">Live</div>
             </div>
 
-            <div class="video-window" data-channel-link aria-label="Open YouTube channel" role="button" tabindex="0">
+            <div class="video-window" data-video-url="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1" aria-label="Open video" role="button" tabindex="0">
               <div class="play-circle">▶</div>
             </div>
 
@@ -1029,38 +1029,38 @@
 
         <div class="video-grid">
           <article class="video-card">
-            <div class="video-thumb" data-channel-link aria-label="Open YouTube channel" role="button" tabindex="0">
+            <div class="video-thumb" data-video-url="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1" aria-label="Open video" role="button" tabindex="0">
               <div class="video-play">▶</div>
             </div>
             <div class="video-body">
               <span class="video-tag">Sehemu ya Kwanza</span>
               <h3>Úmbo cha Babembe (1)</h3>
               <p>Kutambulisha historia, asili na ujuzi wa mwanzo wa jamii ya Babembe kwa mtazamo wa elimu na utamaduni.</p>
-              <button class="watch-btn" type="button" data-channel-link>Tazama</button>
+              <button class="watch-btn" type="button" data-video-url="https://youtu.be/xsxfbtJnrzg?si=Bq2BC5wCN8fikXC1">Tazama</button>
             </div>
           </article>
 
           <article class="video-card">
-            <div class="video-thumb" data-channel-link aria-label="Open YouTube channel" role="button" tabindex="0">
+            <div class="video-thumb" data-video-url="https://youtu.be/YPPOyvxJ-Wk?si=q3umUi0I9hEolME1" aria-label="Open video" role="button" tabindex="0">
               <div class="video-play">▶</div>
             </div>
             <div class="video-body">
               <span class="video-tag">Sehemu ya Pili</span>
               <h3>Úmbo cha Babembe (2)</h3>
               <p>Mwendelezo wa elimu ya jamii, maadili, utaratibu wa maisha, na umuhimu wa heshima katika utamaduni.</p>
-              <button class="watch-btn" type="button" data-channel-link>Tazama</button>
+              <button class="watch-btn" type="button" data-video-url="https://youtu.be/YPPOyvxJ-Wk?si=q3umUi0I9hEolME1">Tazama</button>
             </div>
           </article>
 
           <article class="video-card">
-            <div class="video-thumb" data-channel-link aria-label="Open YouTube channel" role="button" tabindex="0">
+            <div class="video-thumb" data-video-url="https://www.youtube.com/@Alembeelawaidi" aria-label="Open channel" role="button" tabindex="0">
               <div class="video-play">▶</div>
             </div>
             <div class="video-body">
               <span class="video-tag">Sehemu ya Tatu</span>
               <h3>Úmbo cha Babembe (3)</h3>
               <p>Uchunguzi wa maadili ya jamii, mila zinazohifadhi utambulisho, na hekima ya kutumia historia kwa maisha ya leo.</p>
-              <button class="watch-btn" type="button" data-channel-link>Tazama</button>
+              <button class="watch-btn" type="button" data-video-url="https://www.youtube.com/@Alembeelawaidi">Tazama</button>
             </div>
           </article>
         </div>
@@ -1150,14 +1150,13 @@
   </div>
 
   <script>
-    const YOUTUBE_CHANNEL = 'https://www.youtube.com/@Alembeelawaidi';
     const navMenu = document.getElementById('navMenu');
     const hamburger = document.getElementById('hamburger');
     const modal = document.getElementById('videoModal');
     const closeBtn = document.querySelector('.close-btn');
 
-    function openChannel() {
-      window.open(YOUTUBE_CHANNEL, '_blank', 'noopener,noreferrer');
+    function openVideo(url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     function toggleMenu() {
@@ -1188,15 +1187,15 @@
       });
     });
 
-    document.querySelectorAll('[data-channel-link]').forEach((element) => {
+    document.querySelectorAll('[data-video-url]').forEach((element) => {
       element.addEventListener('click', () => {
-        openChannel();
+        openVideo(element.dataset.videoUrl);
       });
 
       element.addEventListener('keydown', (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          openChannel();
+          openVideo(element.dataset.videoUrl);
         }
       });
     });
